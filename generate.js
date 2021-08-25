@@ -36,7 +36,7 @@ exports.sumulacijaTurnira = (nizIgraca, callback) => {
                 while (generisaniNiz.length > 1) { 
                     let nizPobednika = [];
                     round++;
-                        draft(generisaniNiz, (izvuceniPar) => { // trenutniNizIgraca
+                        draft(generisaniNiz, (izvuceniPar) => { 
                             Match.generisiPobednika(izvuceniPar, (pobednik, rezultat_meca) => {
                             
                                 nizPobednika.push(pobednik);
