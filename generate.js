@@ -5,17 +5,12 @@ function generateArray (nizIgraca, callback) {
 
         Pomagaci.sort(nizIgraca, (sortiranNiz) => {
             
-        for(let i = 0; i < sortiranNiz.length / 2; i += 2) { // N/2 O(n) 
-
-            //let k = sortiranNiz[i];
-            //let j = sortiranNiz[sortiranNiz.length / 2 + i]; // trebalo je da direktno pristupim nizu a ne preko kopije promenljivih
-            // samo i i j menjali mesta a trebalo je menjati mesta u nizu
-            // bila je greska kod swapinga
-
-            [sortiranNiz[i], sortiranNiz[sortiranNiz.length / 2 + i]] = [sortiranNiz[sortiranNiz.length / 2 + i], sortiranNiz[i]];
+        for(let i = 0; i < sortiranNiz.length / 2; i += 2) {
+                
+                [sortiranNiz[i], sortiranNiz[sortiranNiz.length / 2 + i]] = [sortiranNiz[sortiranNiz.length / 2 + i], sortiranNiz[i]];
         }
         
-        callback(sortiranNiz); // [1, 2, 5, 7, 11, 12, 6, 9] samo kad je niz sortiran
+        callback(sortiranNiz); 
     })
     
     
@@ -36,32 +31,25 @@ function draft (nizIgraca, callback) {
 exports.sumulacijaTurnira = (nizIgraca, callback) => { 
         generateArray(nizIgraca, (generisaniNiz) => {
 
-            //let trenutniNizIgraca = generisaniNiz; 
             let ukupan_rezultat = '';
             let round = 0;
-                while (generisaniNiz.length > 1) { // trenutniNizIgraca.length, sve dok je N > 1 podeli sa 2
+                while (generisaniNiz.length > 1) { 
                     let nizPobednika = [];
                     round++;
                         draft(generisaniNiz, (izvuceniPar) => { // trenutniNizIgraca
                             Match.generisiPobednika(izvuceniPar, (pobednik, rezultat_meca) => {
                             
                                 nizPobednika.push(pobednik);
-                                ukupan_rezultat +=' '+ round + '. Round' + rezultat_meca; // ' '+ round + '. Round' + rezultat_meca
+                                ukupan_rezultat +=' '+ round + '. Round' + rezultat_meca;
 
                     });
                         generisaniNiz = nizPobednika;
-                        //trenutniNizIgraca = nizPobednika; 
                 })
                 
             }
             console.log(generisaniNiz[0]);
 
-            callback(generisaniNiz[0], ukupan_rezultat); // trenutniNizIgraca[0]
+            callback(generisaniNiz[0], ukupan_rezultat); 
     })
     
 }   
-
-
-// red izvrsavnja kao cain
-
-// async nacin izvrsavanja odredjenih komandi
