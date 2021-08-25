@@ -1,17 +1,12 @@
 
 exports.checkNumberOfPlayers = (N) => {
      const validNumbers = [8, 16, 32, 64];
-     let checks = validNumbers.filter(element => {
-          if(element === N) {
-               return N;
-          } // indexOf if false returns -1
-     });
-
-     return checks.length == 1; // returns true
+     
+     return validNumbers.indexOf(N) > -1 ? true : false;
      
 }
 
-exports.checkSameRatings = (nizIgraca, podaciIgraca) => { // firstName and lastname or ranking
+exports.checkSameRatings = (nizIgraca, podaciIgraca) => { 
      let checksArray = nizIgraca.filter(element => {
           return element.firstName === podaciIgraca.firstName && element.lastName === podaciIgraca.lastName || element.ranking === podaciIgraca.ranking;
      });
